@@ -1,0 +1,16 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<SfButton>Button</SfButton>
+
+<SfCheckBox Label="Default" @bind-Checked="isChecked"></SfCheckBox>
+
+@code
+{
+    private bool isChecked = true;
+}
