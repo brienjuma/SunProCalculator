@@ -9,6 +9,11 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddSyncfusionBlazor();
 
+builder.Services.AddServerSideBlazor();
+builder.Services.AddMemoryCache();
+
+builder.Services.AddSyncfusionBlazor();
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWH5ecXRXRWVcU0V1XEI=");
 
 var app = builder.Build();
 
