@@ -4,6 +4,7 @@
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.SfPdfViewer
+@using System.IO;
 @rendermode InteractiveServer
 
 <div class="container-fluid border-light rounded-2 shadow m-5 mb-1 mt-1 p-5 ms-1" style="background-color:#e6e8ed;">
@@ -76,7 +77,9 @@
     private List<string> Countries { get; set; } = new List<string> { "Kenya", "Botswana", "Mozambique", "Senegal" };
     private List<string> CalculationTypes { get; set; } = new List<string> { "Gross Pay", "Net Pay" };
 
-    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+    public string DocumentPath { get; set; } = "data:application/pdf;base64," + base64String;
+    static byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/sample.pdf");
+    static string base64String = Convert.ToBase64String(byteArray);
 
     private void OnCalculationTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string,string> args)
     {
