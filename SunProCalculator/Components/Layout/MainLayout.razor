@@ -1,6 +1,42 @@
-﻿@inherits LayoutComponentBase
+﻿@using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor.Buttons
+@inherits LayoutComponentBase
+
+<div class="control-container" style="width:100%;">
+    <SfAppBar style="background-color:#00c853;height:100px;width:100%;">
+        <a ><img height="70px" width="100px" src="favicon2.png"/></a>
+    </SfAppBar>
+</div>
+
+<style>
+    .control-container .e-btn.e-inherit {
+        margin: 0 3px;
+    }
+
+    @@media screen and (max-width: 1024px) {
+        .control-container .e-appbar {
+            flex-flow: row wrap;
+            height: auto;
+            gap: 8px;
+        }
+
+        .control-container {
+            width: 350px;
+        }
+    }
+
+    @@media screen and (max-width: 480px) {
+        .control-container {
+            width: 200px;
+            margin: 0 2px;
+        }
+    }
+</style>
+
+@* <div style="background-color:#00c853;width:100%; height:5vh;"></div> *@
 
 <div class="page">
+
     <main>
         <article class="content px-4">
             @Body

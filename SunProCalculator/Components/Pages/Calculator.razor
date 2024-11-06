@@ -7,27 +7,28 @@
 @using System.IO;
 @rendermode InteractiveServer
 
-<div class="container-fluid border-light rounded shadow mt-5 p-4" style="background-color:#e6e8ed;">
+<div class="container-fluid border-light rounded shadow p-4" style="background-color:#e6e8ed;margin-top:0;">
     <div class="row ">
         <!-- Calculator Section -->
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <div class="w-75">
                 <div class="px-3 pb-3">
-                    <h2 class="font-monospace fw-bolder display-4" style="background: linear-gradient(to right, #00c853, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Payee Calculator</h2>
+                    <h2 class="font-monospace fw-bolder display-4" style="background: linear-gradient(to right, #00c853, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        SunPro Payslip Calculator</h2>
                     <span class="fw-bold">Here to help calculate your payee!</span>
                     <span class="d-block">- Input the fields below then click calculate!</span>
                 </div>
                 <div class="card shadow w-100 px-2 mx-2">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label text-success">Country:</label>
+                            <label class="form-label" style="color:#00c853;">Country:</label>
                             <SfDropDownList TValue="string" TItem="string" @bind-Value="@SelectedCountry"
                                             DataSource="@Countries" Placeholder="Select Country">
                             </SfDropDownList>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label text-success">Calculation Type:</label>
+                            <label class="form-label" style="color:#00c853;">Calculation Type:</label>
                             <SfDropDownList TValue="string" TItem="string"
                                             DataSource="@CalculationTypes" Placeholder="Select Type">
                                 <DropDownListEvents TValue="string" TItem="string" ValueChange="OnCalculationTypeChange"></DropDownListEvents>
@@ -35,13 +36,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label text-success">Amount:</label>
+                            <label class="form-label" style="color:#00c853;">Amount:</label>
                             <SfTextBox Type="InputType.Number" @bind-Value="@Amount" Placeholder="@AmountPlaceholder"></SfTextBox>
                         </div>
 
-
                         <div class="text-center mt-4">
-                            <SfButton CssClass="e-success" @onclick="Calculate">CALCULATE</SfButton>
+                            <SfButton style="background-color:#00c853;" @onclick="Calculate">CALCULATE</SfButton>
                         </div>
                     </div>
                 </div>
