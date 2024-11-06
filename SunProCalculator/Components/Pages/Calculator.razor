@@ -7,38 +7,36 @@
 @using System.IO;
 @rendermode InteractiveServer
 
-<div class="container-fluid border-light rounded-2 shadow m-5 mb-1 mt-1 p-5 ms-1" style="background-color:#e6e8ed;">
+<div class="container-fluid border-light rounded shadow mt-5 p-4" style="background-color:#e6e8ed;">
     <div class="row ">
         <!-- Calculator Section -->
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <div class="w-75">
                 <div class="px-3 pb-3">
-                    <h2 class="font-monospace fw-bolder" style="background: linear-gradient(to right, #228B22, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Payee Calculator</h2>
+                    <h2 class="font-monospace fw-bolder display-4" style="background: linear-gradient(to right, #00c853, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Payee Calculator</h2>
                     <span class="fw-bold">Here to help calculate your payee!</span>
-                    <br />
-                    <span class="">- Input the fields below then click calculate!</span>
+                    <span class="d-block">- Input the fields below then click calculate!</span>
                 </div>
                 <div class="card shadow w-100 px-2 mx-2">
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label text-success">Country:</label>
                             <SfDropDownList TValue="string" TItem="string" @bind-Value="@SelectedCountry"
-                                          DataSource="@Countries" Placeholder="Select Country">
+                                            DataSource="@Countries" Placeholder="Select Country">
                             </SfDropDownList>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label text-success">Calculation Type:</label>
-                            <SfDropDownList TValue="string" TItem="string" 
-                                          DataSource="@CalculationTypes" Placeholder="Select Type"
-                                          >
+                            <SfDropDownList TValue="string" TItem="string"
+                                            DataSource="@CalculationTypes" Placeholder="Select Type">
                                 <DropDownListEvents TValue="string" TItem="string" ValueChange="OnCalculationTypeChange"></DropDownListEvents>
                             </SfDropDownList>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label text-success">Amount:</label>
-                            <SfTextBox @bind-Value="@Amount" Placeholder="@AmountPlaceholder"></SfTextBox>
+                            <SfTextBox Type="InputType.Number" @bind-Value="@Amount" Placeholder="@AmountPlaceholder"></SfTextBox>
                         </div>
 
 
@@ -53,14 +51,15 @@
 
         <!-- Payslip Section -->
         <div class="col-md-6 mb-4">
-            <div class="card shadow h-100 ">
-                <div class="card-header ">
-                    <h6 class="mb-0 text-center" style="background: linear-gradient(to right, #124112, #776e3c, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PAYSLIP</h6>
+            <div class="card shadow">
+                <div class="card-header">
+                    <h6 class="mb-0 text-center" style="background: linear-gradient(to right, #00c853, #776e3c, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PAYSLIP</h6>
                 </div>
-                <div class="card-body">
-                    <SfPdfViewer2 DocumentPath="@DocumentPath"
-                                  Height=""
-                                  Width="100%">
+                <div class="card-body h-auto">
+                    <SfPdfViewer2 DocumentPath="@DocumentPath" DownloadFileName="payslip"
+                                  Height="100%" Width="100%" CssClass="bg-secondary"
+                                  ZoomMode="ZoomMode.FitToPage" EnableNavigationToolbar="false">
+                        <PdfViewerToolbarSettings ToolbarItems="ToolbarItems"></PdfViewerToolbarSettings>
                     </SfPdfViewer2>
                 </div>
             </div>
@@ -74,20 +73,27 @@
     private string Amount { get; set; } = "";
     private string AmountPlaceholder { get; set; } = "Enter Amount";
 
-    private List<string> Countries { get; set; } = new List<string> { "Kenya", "Botswana", "Mozambique", "Senegal" };
-    private List<string> CalculationTypes { get; set; } = new List<string> { "Gross Pay", "Net Pay" };
+    private List<string> Countries { get; set; } = ["Kenya", "Botswana", "Mozambique", "Senegal"];
+    private List<string> CalculationTypes { get; set; } = ["Gross Pay", "Net Pay"];
 
     public string DocumentPath { get; set; } = "data:application/pdf;base64," + base64String;
     static byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/sample.pdf");
     static string base64String = Convert.ToBase64String(byteArray);
 
-    private void OnCalculationTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string,string> args)
+    List<ToolbarItem> ToolbarItems =
+    [
+        ToolbarItem.MagnificationTool,
+        ToolbarItem.PrintOption,
+        ToolbarItem.DownloadOption
+    ];
+
+    private void OnCalculationTypeChange(ChangeEventArgs<string, string> args)
     {
         AmountPlaceholder = args.Value == "Gross Pay" ? "Enter Net Pay" : "Enter Gross Pay";
     }
 
     private void Calculate()
     {
-        
+
     }
 }
