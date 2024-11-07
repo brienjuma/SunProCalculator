@@ -21,14 +21,14 @@
                 <div class="card shadow w-100 px-2 mx-2">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label" style="color:#00c853;">Country:</label>
+                            <label class="form-label">Country:</label>
                             <SfDropDownList TValue="string" TItem="string" @bind-Value="@SelectedCountry"
                                             DataSource="@Countries" Placeholder="Select Country">
                             </SfDropDownList>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" style="color:#00c853;">Calculation Type:</label>
+                            <label class="form-label">Calculation Type:</label>
                             <SfDropDownList TValue="string" TItem="string"
                                             DataSource="@CalculationTypes" Placeholder="Select Type">
                                 <DropDownListEvents TValue="string" TItem="string" ValueChange="OnCalculationTypeChange"></DropDownListEvents>
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" style="color:#00c853;">Amount:</label>
+                            <label class="form-label">Amount:</label>
                             <SfTextBox Type="InputType.Number" @bind-Value="@Amount" Placeholder="@AmountPlaceholder"></SfTextBox>
                         </div>
 
